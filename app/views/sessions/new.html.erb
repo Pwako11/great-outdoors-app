@@ -1,0 +1,14 @@
+
+<h2>Welcome to the Great Outdoors</h2>
+
+<p> Please login </p>
+
+<%= form_tag sessions_path do %>
+<%= label_tag "Username:" %>
+<%= text_field_tag :user_name %>
+
+<%= label_tag "Password:" %>
+<%= password_field_tag :password %>
+
+<%= submit_tag "LOGIN" %>
+<% end %>

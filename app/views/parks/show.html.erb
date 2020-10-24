@@ -1,0 +1,15 @@
+<h2><%= @park.name %> </h2> 
+<%= @park.state %>
+<br>
+<p>Here are some helpfull reviews about this park by outdoor enthusiats just like you:</p>
+
+<ul>
+<% @park.reviews.each do |review| %>
+    <li>
+    Contributor:
+    <%= link_to review.user.user_name, review_path(review) %>
+    Rating:
+    <%= review.rating %>
+    </li>
+<% end %>
+</ul>

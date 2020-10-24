@@ -1,0 +1,17 @@
+
+Welcome <%= @user.first_name %>!
+
+Here is a list of your reviews: <br>
+<table>
+<tbody>
+    <% @user.reviews.each do |review| %>
+      <tr>
+        <td><%= review.rating %></td>
+        <td><%= review.content %></td>
+        <td><%= link_to 'Show', review %></td>
+        <td><%= link_to 'Edit', edit_review_path(review) %></td>
+        <td><%= link_to 'Delete', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>

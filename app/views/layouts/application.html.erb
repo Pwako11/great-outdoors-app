@@ -9,6 +9,14 @@
   </head>
 
   <body>
+    You are logged in as: <%= current_user %><br>
+    
     <%= yield %>
+    <br>
+    <%= link_to 'Signup', signup_path %> |
+    <%= link_to 'login', login_path %> |
+    <%= link_to 'logout', logout_path %> |
+
   </body>
-</html>
+
+  </html>
