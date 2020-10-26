@@ -10,38 +10,41 @@ class ReviewsController < ApplicationController
     end 
 
     def new 
-        @reviews = Review.new
+        @review = Review.new
     end 
 
     def edit
+        @review = Review.find(params[:id])
     end 
 
     def create
-        #raise params.inspect
         @review = Review.new(review_params)
-
-        #respond_to do |format|
           if @review.save
             redirect_to @review, notice: 'Review was successfully created.' 
           else
             render :new 
           end
-        #end
     end 
 
-
     def update
-
+        @review = Review.find_by_id(params[:id])
+        if @review.update(review_params)
+            redirect_to review_path(@review), notice: 'Review was successfully updated.'
+          else
+            render :edit
+          end
     end
 
     def destroy 
-
+        @review = Review.find(params[:id])
+        @review.destroy
+        # redirect_to review_path(@review), notice: 'Post was successfully destroyed.'
     end 
 
     private 
 
 
     def review_params
-        params.require(:review).permit(:rating, :content, :park_id, :user_id)
+        params.require(:review).permit(:rating, :content, :park_id, :user_id, :amenity_ids=>[])
     end 
 end

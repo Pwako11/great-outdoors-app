@@ -1,8 +1,22 @@
-<%= form_for @reviews do |f| %>
-    <%= f.collection_select :park_id, Park.all, :id, :name %>
-    <%= f.text_area :content %>
-    <%= f.number_field :rating %>
+<%= form_for @review do |f| %>
+    <%= f.label :content %>
+    <%= f.collection_select :park_id, Park.all, :id, :name %><br>
+    <br>
+    <%= f.label :content %>
+    <%= f.text_area :content %><br>
+    <br>
+    <%= f.label :rating %>
+    <%= f.number_field :rating,  max:5, min:0  %><br>
+    <br>
     <%= f.hidden_field :user_id, :value => current_user.id %>
+
+    <% Amenity.all.each do |a| %>
+        <label for="amenity_id_<%= a.id %>"><%= a.name%></label>
+        <input type="checkbox" name="park[amenity_ids][]" value ="<%= a.id %>" id= "amenity_id_<%= a.id %>"><br>   
+    <% end %>
+    <br>
+    
+       
     <%= f.submit %>
   <% end %>
   

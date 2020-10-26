@@ -1,8 +1,8 @@
 <h2><%= @park.name %> </h2> 
 <%= @park.state %>
+<p><%= @park.description %></p>
 <br>
 <p>Here are some helpfull reviews about this park by outdoor enthusiats just like you:</p>
-
 <ul>
 <% @park.reviews.each do |review| %>
     <li>
@@ -13,3 +13,8 @@
     </li>
 <% end %>
 </ul>
+<br>
+<%= link_to 'write a review about this park', new_review_path %>
+<br>
+<%= link_to 'return to home page', parks_path %>
+<br>

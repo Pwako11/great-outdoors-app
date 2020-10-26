@@ -1,7 +1,15 @@
+<p>
+Welcome to the Great Outdoors, a community of outdoor enthusiasts. This site helps users find parks and recreation areas for thier next excusion.
+
+To view contributions you have to signun, this will enable you to view member reviews and make your own review contributions to our community members. 
+</p>
+
+
+<p>Select a state below to view parks and recreation areas: </p>
 <ul>
 <% @parks.each do |park| %>
     <li>
-    <%= link_to park.name, parks_path(park) %>
+    <%= link_to park.name, park_path(park) %>
     </li>
 <% end %>
 </ul>

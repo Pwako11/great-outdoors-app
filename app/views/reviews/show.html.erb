@@ -4,6 +4,11 @@
 
 
 <h3>Comments</h3>
-<p><%= @review.content %></p>
-
-<%= link_to 'Back', reviews_path %>
+<p><%= @review.content %>
+<br>
+Park Amenities:<br>
+# List out Amenities created by user
+</p>
+<%= link_to 'View other reviews by this contibutor', reviews_path %>
+<br>
+<%= link_to 'back to Park list', parks_path %>
