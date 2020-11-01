@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :park_amenities
-  resources :amenities, only: [:show]
   resources :reviews
   resources :parks
   resources :users, only: [:new, :create, :show, :edit, :update]

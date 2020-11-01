@@ -4,8 +4,7 @@ class CreateParks < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :state
       t.string :description
-
-      t.timestamps
+      t.string :amenity
     end
   end
 end

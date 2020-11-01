@@ -10,37 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_26_033509) do
-
-  create_table "amenities", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "amenity_park", id: false, force: :cascade do |t|
-    t.integer "amenity_id", null: false
-    t.integer "park_id", null: false
-    t.index ["amenity_id", "park_id"], name: "index_amenity_park_on_amenity_id_and_park_id"
-    t.index ["park_id", "amenity_id"], name: "index_amenity_park_on_park_id_and_amenity_id"
-  end
+ActiveRecord::Schema.define(version: 2020_10_30_204232) do
 
   create_table "parks", force: :cascade do |t|
     t.string "name"
     t.string "state"
     t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.string "amenity"
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "rating"
+    t.string "title"
     t.string "content"
+    t.integer "rating"
     t.integer "user_id"
     t.integer "park_id"
-    t.integer "amenity_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,8 +33,6 @@ ActiveRecord::Schema.define(version: 2020_10_26_033509) do
     t.string "last_name"
     t.string "email"
     t.string "password_digest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
 end

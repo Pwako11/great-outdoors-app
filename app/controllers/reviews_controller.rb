@@ -1,16 +1,18 @@
 class ReviewsController < ApplicationController
-
+    before_action :require_login
+    
     def index
         @reviews = Review.all
     end
 
     def show
         @review = Review.find(params[:id])
-        @rating = @review.rating
+        # @rating = @review.rating
     end 
 
     def new 
         @review = Review.new
+        # raise @review.inspect
     end 
 
     def edit
@@ -35,16 +37,19 @@ class ReviewsController < ApplicationController
           end
     end
 
-    def destroy 
+    def destroy
+        raise params.inspect
         @review = Review.find(params[:id])
-        @review.destroy
-        # redirect_to review_path(@review), notice: 'Post was successfully destroyed.'
+            if @review.user === current_user
+               @review.destroy
+               redirect_to review_path(@review), notice: 'Review was successfully destroyed.'
+            end 
+        redirect_to review_path(@review), notice: 'Only review owners can delete reviews'
     end 
 
     private 
 
-
     def review_params
-        params.require(:review).permit(:rating, :content, :park_id, :user_id, :amenity_ids=>[])
+        params.require(:review).permit(:title, :rating, :content, :user_id, :park_id )
     end 
 end

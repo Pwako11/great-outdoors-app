@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
     def new 
+        redirect_to current_user if logged_in?
         @user = User.new
     end 
 
@@ -16,6 +17,7 @@ class UsersController < ApplicationController
     end 
     
     def show
+        require_login
         set_user
     end 
 
