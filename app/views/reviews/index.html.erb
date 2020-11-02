@@ -18,9 +18,9 @@
         <td><%= review.rating %></td>
         <td><%= review.title %></td>
         <td><%= review.content %></td>
-        <td><%= link_to 'Show', review %></td>
-        <td><%= link_to 'Edit', edit_review_path(review) %></td>
-        <td><%= link_to 'Delete', review_path(review), :method => :delete  %></td>
+        <td><%= button_to 'Show', review %></td>
+        <td><%= button_to 'Edit', edit_review_path(review) %></td>
+        <td><%= button_to 'Delete', review_path(review), method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
@@ -29,3 +29,5 @@
 <br>
 
 <%= link_to 'Write a new review', new_review_path %>
+<br>
+<%= link_to 'Home page', parks_path %>

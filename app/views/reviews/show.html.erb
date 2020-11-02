@@ -11,6 +11,10 @@
 <h5> Contributor: <%= link_to @review.user.user_name, user_path(@review.user) %></h5>
 <br>
 </p>
+
+<%= button_to 'Delete', review_path(@review), method: :delete %>
+
 <%= link_to 'View other reviews by this contibutor', reviews_path %><br>
-<%= link_to 'back to Park list', parks_path %>
+<br>
+<%= link_to 'Home page', parks_path %>
 <br>

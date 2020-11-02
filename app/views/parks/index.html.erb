@@ -16,5 +16,5 @@ To view contributions you have to signun, this will enable you to view member re
 
 Here is our highest rated park by our enthusiasts:
 
-<% @parks.most_reviews %>
+<%= link_to @parks.most_reviews.name, park_path(@parks.most_reviews) %>
     
