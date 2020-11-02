@@ -7,12 +7,10 @@ class ReviewsController < ApplicationController
 
     def show
         @review = Review.find(params[:id])
-        # @rating = @review.rating
     end 
 
     def new 
         @review = Review.new
-        # raise @review.inspect
     end 
 
     def edit
@@ -38,7 +36,6 @@ class ReviewsController < ApplicationController
     end
 
     def destroy
-        # raise params.inspect
         @review = Review.find(params[:id])
             if @review.user === current_user
                @review.destroy
