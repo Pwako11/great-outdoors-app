@@ -1,21 +1,68 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>GreatOutdoorsApp</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<style>
+body {
+  background-color: lightblue;
+  opacity: 1;
+}
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-  </head>
+h1 {
+  color: white;
+  text-align: center;
+}
+
+
+h2 {
+  color: white;
+  text-align: center;
+}
+h3 {
+  color: white;
+  text-align: center;
+}
+p {
+  font-family: verdana;
+  font-size: 20px;
+}
+</style>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    
+    
+    <title>GreatOutdoorsApp</title>
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/stylesheets/main.css" />  </head>
 
   <body>
-    You are logged in as: <%= current_user %><br>
+
+  <div class="wrapper">
     
-    <%= yield %>
+  <% if logged_in? %>
+    You are logged in as: <%= current_user.full_name %><br>
+  <% else %> 
+    You are browsing as a vistor. To add a review please log-in or sing up. 
+  <% end %>
+  
+    
+  <%= yield %>
+      
+  <br>
+  <footer class="branding">
+
+    <% if logged_in? %>
+      <%= link_to 'logout', logout_path %>|
+      <%= link_to 'reviews', reviews_path %>
+    <% else %> 
+      <%= link_to 'Signup', signup_path %> |
+      <%= link_to 'login', login_path %>
+    <% end %>
     <br>
-    <%= link_to 'Signup', signup_path %> |
-    <%= link_to 'login', login_path %> |
-    <%= link_to 'logout', logout_path %> |
+    <small>&copy; 2020 <strong>Great Outdoors </strong></small>
+  </footer>
+  </div>
 
   </body>
 

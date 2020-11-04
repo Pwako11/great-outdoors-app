@@ -2,19 +2,26 @@
 <%= @park.state %>
 <p><%= @park.description %></p>
 <br>
+
+<% if logged_in? %>
 <p>Here are some helpfull reviews about this park by outdoor enthusiats just like you:</p>
 <ul>
 <% @park.reviews.each do |review| %>
     <li>
     Contributor:
-    <%= link_to review.user.user_name, review_path(review) %>
+    <%= link_to review.user.full_name, review_path(review) %>
     Rating:
     <%= review.rating %>
     </li>
 <% end %>
 </ul>
 <br>
+
 <%= link_to 'write a review about this park', new_review_path %>
 <br>
 <%= link_to 'return to home page', parks_path %>
 <br>
+
+<% else %> 
+    You are browsing as a vistor. To views or add  your own review please log-in or sing up. 
+<% end %>

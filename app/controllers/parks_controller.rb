@@ -21,6 +21,6 @@ class ParksController < ApplicationController
     # private
 
     def park_params
-        params.require(:park).permit(:name, :state, :description, :id, amenity:[], amenities_attributes: [:name])
+        params.require(:park).permit(:name, :state, :description, :id, :amenity)
     end
 end

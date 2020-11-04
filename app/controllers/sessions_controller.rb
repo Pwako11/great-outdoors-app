@@ -4,22 +4,31 @@ class SessionsController < ApplicationController
     end 
 
     def create 
-        if params[:user]
-            @user = User.find_by(user_name: params[:user_name])
+        byebug
+        if auth_hash = request.env["omniauth.auth"]
+            oauth_email = request.env["omniauth.auth"]["info"]["email"]
+            oauth_name = request.env["omniauth.auth"]["info"]["name"]
+           if user = User.find_by(:email  => oauth_email)
+                session[:user_id] = user.id
+                redirect_to user_path(user.id)
+           else 
+                user = User.new(:email => oauth_email, :full_name => oauth_name, :password_digest => SecureRandom.hex )
+                
+                if user.save
+                    session[:user_id] = user.id
+                    redirect_to user_path(user.id)
+                end 
+            end  
+        end 
+
+        if params[:email]
+            @user = User.find_by(email: params[:email])
             if @user && @user.authenticate(params[:password])
                 session[:user_id] = @user.id
                 redirect_to @user
             else 
                 redirect_to login_path
             end 
-        else
-            @user = User.find_or_create_by(uid: auth['uid']) do |u|
-                u.name = auth['info']['name']
-                u.email = auth['info']['email']
-                u.image = auth['info']['image']
-            end
-              session[:user_id] = @user.id
-              redirect_to parks_path
         end 
     end 
 
@@ -31,7 +40,7 @@ class SessionsController < ApplicationController
     private
  
     def auth
-      request.env['omniauth.auth']
+        request.env['omniauth.auth']
     end
 
 end

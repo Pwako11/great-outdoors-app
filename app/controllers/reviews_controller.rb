@@ -1,8 +1,12 @@
 class ReviewsController < ApplicationController
-    before_action :require_login
-
+    
     def index
-        @reviews = Review.all
+        if params[:user_id]
+            @user = User.find(params[:user_id])
+            @reviews = @user.reviews 
+        else
+            @reviews = Review.all 
+        end 
     end
 
     def show
@@ -10,11 +14,16 @@ class ReviewsController < ApplicationController
     end 
 
     def new 
-        @review = Review.new
+        @review = Review.new(user_id: params[:user_id])
     end 
 
     def edit
         @review = Review.find(params[:id])
+        if current_user.id == @review.user_id
+            edit_review_path(@review)
+        else 
+            redirect_to review_path(@review), notice: 'Only review owners can edit reviews'
+        end 
     end 
 
     def create

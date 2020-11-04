@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   post "sessions", to: "sessions#create", as: "sessions"
   delete "sessions", to: "sessions#destroy"
   get "logout", to: "sessions#destroy", as: "logout"
-  get '/auth/facebook/callback' => 'sessions#create'
+  get '/auth/facebook/callback', to: 'sessions#create'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
