@@ -8,10 +8,13 @@
 <ul>
 <% @park.reviews.each do |review| %>
     <li>
-    Contributor:
-    <%= link_to review.user.full_name, review_path(review) %>
-    Rating:
-    <%= review.rating %>
+    Contributor:<%= link_to review.user.full_name, review_path(review) %>
+    <br>
+    Title: <%= review.title %> - Rating: <%= review.rating %>
+    <br>
+    Comments:
+    <br> 
+    <%= review.content %>
     </li>
 <% end %>
 </ul>

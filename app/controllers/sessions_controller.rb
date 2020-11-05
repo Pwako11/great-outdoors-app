@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
     end 
 
     def create 
-        byebug
         if auth_hash = request.env["omniauth.auth"]
             oauth_email = request.env["omniauth.auth"]["info"]["email"]
             oauth_name = request.env["omniauth.auth"]["info"]["name"]
@@ -42,5 +41,4 @@ class SessionsController < ApplicationController
     def auth
         request.env['omniauth.auth']
     end
-
 end

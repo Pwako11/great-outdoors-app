@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :parks
   resources :users, only: [:new, :create, :show, :edit, :update]
   
+  get "/", to: "parks#index", as: "home"
   get "signup", to: "users#new", as: "signup"
   get "login", to: "sessions#new", as: "login"
   post "sessions", to: "sessions#create", as: "sessions"

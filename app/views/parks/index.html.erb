@@ -21,4 +21,6 @@ Here is our highest rated park by our enthusiasts:
 <br>
 Here is our most rated park by our enthusiasts:
 <%= link_to @parks.most_reviews.name, park_path(@parks.most_reviews) %>
+<br>
+<%= link_to 'Click here to view your reviews', user_path(current_user.id) %>
     

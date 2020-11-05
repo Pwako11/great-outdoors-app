@@ -1,8 +1,16 @@
 
 <h2>Welcome <%= @user.full_name %>!</h2>
 
-Here is a list of your reviews: <br>
-<br>
+<h4>Here is your profile:</h4> 
+
+Name: <%= @user.full_name %><br>
+Username: <%= @user.user_name%><br>
+email: <%= @user.email %><br>
+
+<%= link_to 'Click here to Edit your profile', edit_user_path(current_user.id) %>
+<br >
+<h4>Here is a list of your reviews:</h4>
+
 <table>
 <tbody>
     <% @user.reviews.each do |review| %>
