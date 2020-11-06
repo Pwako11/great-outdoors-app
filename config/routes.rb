@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :reviews
-  resources :parks
+
+  resources :parks do
+    resources :reviews, shallow: true
+  end 
+
   resources :users, only: [:new, :create, :show, :edit, :update]
   
   get "/", to: "parks#index", as: "home"

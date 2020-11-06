@@ -5,8 +5,10 @@ class ReviewsController < ApplicationController
             @user = User.find(params[:user_id])
             @reviews = @user.reviews 
 
-        else
-            @reviews = Review.all 
+        elsif params[:park_id]
+            @reviews = Review.where(park_id: params[:park_id]) 
+        else 
+            @reviews = Review.all
         end 
     end
 
@@ -15,7 +17,12 @@ class ReviewsController < ApplicationController
     end 
 
     def new 
-        @review = Review.new(user_id: params[:user_id])
+        id = params[:park_id]
+        if id && @park = Park.find(id)
+            @review = @park.reviews.build
+        else 
+            @review = current_user.reviews.build
+        end 
     end 
 
     def edit

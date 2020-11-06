@@ -12,7 +12,8 @@ To view contributions you have to signup, this will enable you to view member re
 <ul>
 <% @parks.each do |park| %>
     <li>
-    <%= link_to park.name, park_path(park) %>
+    <%= link_to park.name, park_path(park) %> -<%= link_to 'See views', park_reviews_path(park)%>
+    <%= link_to 'Write a review', new_park_review_path(park)%>
     </li>
 <% end %>
 </ul>
@@ -22,5 +23,8 @@ Here is our highest rated park by our enthusiasts:
 Here is our most rated park by our enthusiasts:
 <%= link_to @parks.most_reviews.name, park_path(@parks.most_reviews) %>
 <br>
-<%= link_to 'Click here to view your reviews', user_path(current_user.id) %>
+<% if logged_in? %>
+    <%= link_to 'Click here to view your reviews', user_path(current_user.id) %>
+<% end %>
+
     

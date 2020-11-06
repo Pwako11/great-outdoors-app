@@ -1,21 +1,16 @@
-<%= form_for @user do |f| %>
+<% if @user.errors.any?%>
 
-    <%= f.label :full_name %>
-    <%= f.text_field :full_name %>
-    <br>
-    <%= f.label :user_name %>
-    <%= f.text_field :user_name %> <br>
-    <br>
-    <%= f.label :email %>
-    <%= f.email_field :email %> <br>
-    <br>
-    <%= f.label :password %>
-    <%= f.password_field :password %> <br>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %> <br>
+        <ul>
+        <% @user.errors.full_messages.each do |msg|%>
+            <li class="error"><%= msg %></li>
+            <% end%>
+        </ul>
+        
+        <%= render 'form', user: @user %>
+        
+<% else %>
+
     
-    <%= f.submit %>
-
-
+<%= render 'form', user: @user %>
     
 <% end %>
