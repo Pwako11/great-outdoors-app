@@ -12,8 +12,12 @@ To view contributions you have to signup, this will enable you to view member re
 <ul>
 <% @parks.each do |park| %>
     <li>
+    <% if logged_in? %>
     <%= link_to park.name, park_path(park) %> -<%= link_to 'See views', park_reviews_path(park)%>
     <%= link_to 'Write a review', new_park_review_path(park)%>
+    <% else%>
+    <%= link_to park.name, park_path(park) %> -<%= link_to 'See views', park_reviews_path(park)%>
+    <% end %>
     </li>
 <% end %>
 </ul>
